@@ -106,7 +106,6 @@ public:
 
     int initController(std::string devPath) {
 
-
         return 0;
     }
 };

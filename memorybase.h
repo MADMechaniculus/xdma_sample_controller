@@ -17,7 +17,7 @@ int munmap(void *addr, size_t length) {
 
 class MemoryBase
 {
-    char * memory{(void*)-1};
+    char * memory{nullptr};
     size_t __offset;
     size_t __size;
 public:
@@ -37,8 +37,11 @@ public:
                                    len != 0 ? len : this->__size, \
                                    0, 0, \
                                    fd, offset != 0 ? offset : this->__offset);
-        if (this->memory != (void*)-1)
+        if (this->memory != (void*)-1) {
             return 0;
+        }
+        
+        this->memory = nullptr;
         return -1;
     }
 
