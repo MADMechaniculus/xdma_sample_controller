@@ -20,14 +20,12 @@
 #define PROT_WRITE (0x1 << 1)
 #define MAP_SHARED (0x1 << 0)
 
-void *
-mmap (void *addr, size_t length, int prot, int flags, int fd, size_t offset)
+void * mmap (void *addr, size_t length, int prot, int flags, int fd, size_t offset)
 {
     return new char[length];
 }
 
-int
-munmap (void *addr, size_t length)
+int munmap (void *addr, size_t length)
 {
     delete addr;
     return 0;
@@ -52,9 +50,7 @@ public:
    * @return true В случае, когда память инициализирована
    * @return false В случае, когда память не инициализирована
    */
-    bool
-    isMapped () const
-    {
+    bool isMapped () const {
         return this->memory != nullptr;
     }
 
@@ -66,9 +62,7 @@ public:
    * @param length Размер инициализируемой памяти
    * @return Код ошибки
    */
-    int
-    mapFromFd (int fd)
-    {
+    int mapFromFd (int fd) {
         this->memory = (char *)mmap (NULL, this->mappedSize, PROT_READ | PROT_WRITE,
                                      MAP_SHARED, fd, this->baseOffset);
 
@@ -84,9 +78,7 @@ public:
    * @brief Освобождение памяти
    * @return Код ошибки
    */
-    int
-    unmapMemory (void)
-    {
+    int unmapMemory (void) {
         if (this->memory != nullptr)
         {
             munmap (this->memory, this->mappedSize);
@@ -110,9 +102,7 @@ public:
     }
     virtual ~XdmaCoreBase () {}
 
-    uint32_t *
-    getUInt32Ptr (uint32_t offset)
-    {
+    uint32_t * getUInt32Ptr (uint32_t offset) {
     }
 };
 

@@ -13,6 +13,11 @@ int munmap(void *addr, size_t length) {
     delete (char*)addr;
     return 0;
 }
+
+#define PROT_READ (0x1 << 0)
+#define PROT_WRITE (0x1 << 1)
+#define MAP_SHARED (0x1 << 1)
+
 #endif
 
 class MemoryBase
@@ -35,7 +40,7 @@ public:
     int mmapFromFd(int fd, size_t offset = 0, size_t len = 0) {
         this->memory = (char*)mmap(NULL, \
                                    len != 0 ? len : this->__size, \
-                                   0, 0, \
+                                   PROT_READ | PROT_WRITE, MAP_SHARED, \
                                    fd, offset != 0 ? offset : this->__offset);
         if (this->memory != (void*)-1) {
             return 0;
@@ -45,7 +50,13 @@ public:
         return -1;
     }
 
+    bool isMapped(void) {
+        return this->memory != nullptr;
+    }
 
+    char * getMem(void) {
+        return this->memory;
+    }
 };
 
 #endif // MEMORYBASE_H
