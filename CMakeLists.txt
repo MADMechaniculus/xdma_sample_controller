@@ -10,6 +10,9 @@ add_library(xdma_sample_controller SHARED
   xdma_sample_controller_global.h
   xdma_sample_controller.cpp
   xdma_sample_controller.h
+  xdma_proxy.h
+  memorybase.h
+  memorybase.cpp
 )
 
 target_compile_definitions(xdma_sample_controller PRIVATE XMDA_SAMPLE_CONTROLLER_LIBRARY)
