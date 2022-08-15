@@ -11,8 +11,9 @@ add_library(xdma_sample_controller SHARED
   xdma_sample_controller.cpp
   xdma_sample_controller.h
   xdma_proxy.h
-  memorybase.h
-  memorybase.cpp
+  xdma_proxy.cpp
+  xdma_memorybase.h
+  xdma_memorybase.cpp
   xdma_register.h
   xdma_register.cpp
 )

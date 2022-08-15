@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-#include "memorybase.h"
+#include "xdma_memorybase.h"
 
 class XDMARegisterImpl {
 protected:
@@ -44,6 +44,28 @@ class XDMARegister : public XDMARegisterImpl
 {
 public:
     XDMARegister(size_t offset) : XDMARegisterImpl(offset) {}
+    ~XDMARegister() {}
+
+    void push(T value) {
+        XDMARegisterImpl::push(value);
+    }
+
+    void pull(T & var) {
+        XDMARegisterImpl::pull(var);
+    }
 };
+
+// Template instantiation ======================================================
+template<>
+class XDMARegister<int32_t>;
+template<>
+class XDMARegister<uint32_t>;
+// =============================================================================
+
+// Type definitions ============================================================
+typedef XDMARegisterImpl        xdmaReg_t;
+typedef XDMARegister<int32_t>   xdmaInt32Reg;
+typedef XDMARegister<uint32_t>  xdmaUInt32Reg;
+// =============================================================================
 
 #endif // XDMAREGISTER_H

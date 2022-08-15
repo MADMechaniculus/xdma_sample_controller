@@ -83,7 +83,7 @@ protected:
 public:
     XdmaIdent(int fd) {
         if (fd < 0) {
-            throw std::runtime_error("Target file descriptor isinvalid!");
+            throw std::runtime_error("Target file descriptor is invalid!");
         }
 
         identBase = (char*)mmap(NULL, IDENT_LENGTH, PROT_READ, \

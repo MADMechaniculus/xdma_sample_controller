@@ -1,4 +1,4 @@
-#include "memorybase.h"
+#include "xdma_memorybase.h"
 
 MemoryBase::MemoryBase(size_t offset, size_t len) : __offset(offset), __size(len) {}
 
