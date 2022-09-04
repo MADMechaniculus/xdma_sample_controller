@@ -5,7 +5,7 @@
 
 #include "xdma_memorybase.h"
 
-class XDMARegisterImpl {
+class AXIRegisterImpl {
 protected:
     MemoryBase * origin{nullptr};
     size_t regOffset;
@@ -31,8 +31,8 @@ protected:
     // =========================================================================
 
 public:
-    XDMARegisterImpl(size_t offset) : regOffset(offset) {}
-    virtual ~XDMARegisterImpl() {}
+    AXIRegisterImpl(size_t offset) : regOffset(offset) {}
+    virtual ~AXIRegisterImpl() {}
 
     void setOrigin(MemoryBase * orig) {
         this->origin = orig;
@@ -40,32 +40,32 @@ public:
 };
 
 template <typename T>
-class XDMARegister : public XDMARegisterImpl
+class AXIRegister : public AXIRegisterImpl
 {
 public:
-    XDMARegister(size_t offset) : XDMARegisterImpl(offset) {}
-    ~XDMARegister() {}
+    AXIRegister(size_t offset) : AXIRegisterImpl(offset) {}
+    ~AXIRegister() {}
 
     void push(T value) {
-        XDMARegisterImpl::push(value);
+        AXIRegisterImpl::push(value);
     }
 
     void pull(T & var) {
-        XDMARegisterImpl::pull(var);
+        AXIRegisterImpl::pull(var);
     }
 };
 
 // Template instantiation ======================================================
 template<>
-class XDMARegister<int32_t>;
+class AXIRegister<int32_t>;
 template<>
-class XDMARegister<uint32_t>;
+class AXIRegister<uint32_t>;
 // =============================================================================
 
 // Type definitions ============================================================
-typedef XDMARegisterImpl        xdmaReg_t;
-typedef XDMARegister<int32_t>   xdmaInt32Reg;
-typedef XDMARegister<uint32_t>  xdmaUInt32Reg;
+typedef AXIRegisterImpl        AXIReg_t;
+typedef AXIRegister<int32_t>   AXIInt32Reg;
+typedef AXIRegister<uint32_t>  AXIUInt32Reg;
 // =============================================================================
 
 #endif // XDMAREGISTER_H

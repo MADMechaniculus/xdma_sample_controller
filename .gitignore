@@ -1,4 +1,5 @@
 CMakeFiles
+CMakeLists.txt.user
 CMakeCache.txt
 CMakeCache.txt.user
 build
@@ -6,3 +7,4 @@ builds
 doc
 docs
 *.o
+*.autosave

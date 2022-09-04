@@ -14,8 +14,8 @@ add_library(xdma_sample_controller SHARED
   xdma_proxy.cpp
   xdma_memorybase.h
   xdma_memorybase.cpp
-  xdma_register.h
-  xdma_register.cpp
+  axi_register.h
+  axi_register.cpp
 )
 
 target_compile_definitions(xdma_sample_controller PRIVATE XMDA_SAMPLE_CONTROLLER_LIBRARY)
